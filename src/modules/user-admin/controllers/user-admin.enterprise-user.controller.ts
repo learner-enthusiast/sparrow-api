@@ -39,7 +39,7 @@ export class AdminUsersController {
     @Req() request: ExtendedFastifyRequest,
     @Res() res: FastifyReply,
   ) {
-    const userId = request.user._id;
+    const userId = request.user?._id;
 
     if (!userId) {
       throw new UnauthorizedException("User ID is missing from token");

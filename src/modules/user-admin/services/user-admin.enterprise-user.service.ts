@@ -25,7 +25,7 @@ export class AdminUsersService {
 
   async getAllUsers(userId: string, currentUser?: DecodedUserObject) {
     const teams = await this.teamsRepo.findBasicTeamsByUserId(userId);
-
+    console.log(currentUser);
     if (!teams.length) {
       throw new NotFoundException("No teams found for this user");
     }
@@ -81,10 +81,7 @@ export class AdminUsersService {
           };
         });
 
-        const userOrg: any = await this.userService.getUserById(
-          user.id,
-          currentUser,
-        );
+        const userOrg: any = await this.userService.getUserById(user.id);
         return {
           id: user.id,
           name: user.name,
